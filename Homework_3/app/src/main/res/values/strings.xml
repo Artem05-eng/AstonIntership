@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Views</string>
+    <string name="fragment_1">Flag</string>
+    <string name="fragment_2">Image</string>
+</resources>
