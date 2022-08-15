@@ -1,6 +1,6 @@
 package com.example.homework_4
 
-import android.R
+import androidx.core.content.res.ResourcesCompat
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
@@ -9,12 +9,14 @@ import android.graphics.Path
 import android.util.AttributeSet
 import android.view.View
 import java.util.*
+import kotlin.properties.Delegates
 
 class AnalogTime @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
-    defStyleAttr: Int = 0
-) : View(context, attrs, defStyleAttr) {
+    defStyleAttr: Int = R.attr.clockStyle,
+    defStyleRes: Int = R.style.AnalogTimerStyle
+) : View(context, attrs, defStyleAttr, defStyleRes) {
 
     private var mHeight = 0
     private var mWidth = 0
@@ -26,6 +28,27 @@ class AnalogTime @JvmOverloads constructor(
     private var paint: Paint? = null
     private var isInit = false
     private val numbers = intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)
+    private var hourColor by Delegates.notNull<Int>()
+    private var minuteColor by Delegates.notNull<Int>()
+    private var secondColor by Delegates.notNull<Int>()
+    private var hourLength by Delegates.notNull<Float>()
+    private var minuteLength by Delegates.notNull<Float>()
+    private var secondLength by Delegates.notNull<Float>()
+
+    init {
+        val typedArray = context.obtainStyledAttributes(
+            attrs,
+            R.styleable.AnalogTime,
+            defStyleAttr,
+            defStyleRes
+        )
+        hourColor = typedArray.getColor(R.styleable.AnalogTime_hourColor, resources.getColor(R.color.red))
+        minuteColor = typedArray.getColor(R.styleable.AnalogTime_minuteColor, resources.getColor(R.color.blue))
+        secondColor = typedArray.getColor(R.styleable.AnalogTime_secondColor, resources.getColor(R.color.black))
+        hourLength = typedArray.getFloat(R.styleable.AnalogTime_hourLength, 0.5f)
+        minuteLength = typedArray.getFloat(R.styleable.AnalogTime_minuteLength, 0.65f)
+        secondLength = typedArray.getFloat(R.styleable.AnalogTime_secondLength, 0.75f)
+    }
 
     private fun initClock() {
         mHeight = getHeight()
@@ -88,25 +111,24 @@ class AnalogTime @JvmOverloads constructor(
         val minute = calendar.get(Calendar.MINUTE).toDouble()
         val second = calendar.get(Calendar.SECOND).toDouble()
         //seconds
-        paint!!.setColor(Color.BLACK)
-        drawHand(canvas, second, radius-100, paint!!)
+        paint!!.setColor(secondColor)
+        drawHand(canvas, second, secondLength, paint!!)
         //minutes
-        paint!!.setColor(Color.RED)
-        drawHand(canvas, minute, radius-150, paint!!)
+        paint!!.setColor(minuteColor)
+        drawHand(canvas, minute, minuteLength, paint!!)
         //hours
-        paint!!.setColor(Color.BLUE)
-        drawHand(canvas, (hour + minute/60) * 5f, radius-200, paint!!)
+        paint!!.setColor(hourColor)
+        drawHand(canvas, (hour + minute / 60) * 5f, hourLength, paint!!)
     }
 
-    private fun drawHand(canvas: Canvas, loc: Double, handRadius: Int, paint: Paint) {
+    private fun drawHand(canvas: Canvas, loc: Double, handRadius: Float, paint: Paint) {
         val angle = Math.PI * loc / 30 - Math.PI / 2
-        canvas.drawLine((width / 2).toFloat(), (height / 2).toFloat(),
-            (width / 2 + Math.cos(angle) * handRadius).toFloat(),
-            (height / 2 + Math.sin(angle) * handRadius).toFloat(),
-            paint!!)
-        canvas.drawLine((width / 2).toFloat(), (height / 2).toFloat(),
+        canvas.drawLine(
             (width / 2 - Math.cos(angle) * 50).toFloat(),
             (height / 2 - Math.sin(angle) * 50).toFloat(),
-            paint!!)
+            (width / 2 + Math.cos(angle) * handRadius * radius).toFloat(),
+            (height / 2 + Math.sin(angle) * handRadius * radius).toFloat(),
+            paint!!
+        )
     }
 }

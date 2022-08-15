@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="AnalogTime">
+        <attr name="hourColor" format="color" />
+        <attr name="minuteColor" format="color" />
+        <attr name="secondColor" format="color"/>
+        <attr name="hourLength" format="float"/>
+        <attr name="minuteLength" format="float"/>
+        <attr name="secondLength" format="float"/>
+    </declare-styleable>
+    <attr name="clockStyle" format="reference"></attr>
+</resources>

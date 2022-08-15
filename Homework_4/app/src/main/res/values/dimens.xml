@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="hourLength" format="float" type="dimen">0.5</item>
+    <item name="minuteLength" format="float" type="dimen">0.75</item>
+    <item name="secondLength" format="float" type="dimen">0.85</item>
+</resources>

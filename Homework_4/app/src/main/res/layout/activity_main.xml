@@ -7,12 +7,20 @@
     tools:context=".MainActivity">
 
     <com.example.homework_4.AnalogTime
+        android:id="@+id/analogClock"
+        style="@style/AnalogTimerStyle"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_margin="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:hourColor="@color/red"
+        app:minuteColor="@color/blue"
+        app:secondColor="@color/black"
+        app:hourLength="0.4"
+        app:minuteLength="0.65"
+        app:secondLength="0.75"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
