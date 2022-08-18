@@ -152,8 +152,6 @@ class MainActivity : AppCompatActivity(), Listener {
     }
 
     override fun updateListFragment(newData: Contact) {
-        supportFragmentManager.findFragmentByTag("TAG_LIST_FRAGMENT")
-            ?.let { supportFragmentManager.beginTransaction().remove(it).commit() }
         contact = newData
         saveContacts(newData)
         Handler().postDelayed(object : Runnable {
@@ -163,9 +161,36 @@ class MainActivity : AppCompatActivity(), Listener {
         }, 500)
     }
 
+    override fun deleteContact(deleteData: Contact) {
+        delete(deleteData)
+        Handler().postDelayed(object : Runnable {
+            override fun run() {
+                navigationList()
+            }
+        }, 500)
+    }
+
+    private fun delete(contact: Contact) {
+        val ops = ArrayList<ContentProviderOperation>()
+        ops.add(
+            ContentProviderOperation.newDelete(ContactsContract.Data.CONTENT_URI)
+                .withSelection(
+                    ContactsContract.Data._ID.toString() + "=?",
+                    arrayOf(java.lang.String.valueOf(contact.id))
+                )
+                .build()
+        )
+        contentResolver.applyBatch(ContactsContract.AUTHORITY, ops)
+    }
+
     private fun navigationList() {
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.container1, ListFragment.newInstance(getContacts()), "TAG_LIST_FRAGMENT")
-            .commit()
+        val fragment = supportFragmentManager.findFragmentByTag("TAG_LIST_FRAGMENT")
+        if (fragment == null) {
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.container1, ListFragment.newInstance(getContacts()), "TAG_LIST_FRAGMENT")
+                .commit()
+        } else {
+            (fragment as? ListFragment)?.updateContact(getContacts())
+        }
     }
 }

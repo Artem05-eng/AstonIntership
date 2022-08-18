@@ -1,13 +1,11 @@
 package com.example.navigation
 
-import android.content.res.Configuration
-import android.content.res.TypedArray
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.navigation.adapter.ContactAdapter
 import com.example.navigation.data.Contact
@@ -22,9 +20,10 @@ class ListFragment : Fragment(R.layout.list_fragment) {
     private var data = emptyList<Contact>()
     private val listener: Listener?
         get() = activity?.let { it as Listener }
+
     companion object {
         const val LIST_KEY = "list"
-        fun newInstance(data : List<Contact>) : ListFragment {
+        fun newInstance(data: List<Contact>): ListFragment {
             return ListFragment().withArguments {
                 putParcelableArray(LIST_KEY, data.toTypedArray())
             }
@@ -43,21 +42,37 @@ class ListFragment : Fragment(R.layout.list_fragment) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding?.listContact?.apply {
-            contactAdapter = ContactAdapter{position -> showDetail(position)}
+            contactAdapter = ContactAdapter({ position -> showDetail(position) },
+                { position -> deleteContact(position) })
             adapter = contactAdapter
             layoutManager = LinearLayoutManager(requireContext())
+            addItemDecoration(
+                DividerItemDecoration(
+                    requireContext(),
+                    DividerItemDecoration.VERTICAL
+                )
+            )
         }
         data = (arguments?.getParcelableArray(LIST_KEY)?.toList() as List<Contact>)
-        contactAdapter?.list = data
+        contactAdapter?.updateContacts(data)
     }
 
     private fun showDetail(position: Int) {
         listener?.showDetailFragment(data[position])
     }
 
+    private fun deleteContact(position: Int) {
+        val fragment = AlertFragment.newInstance(data[position])
+        fragment.show(childFragmentManager, "")
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         binding = null
         contactAdapter = null
+    }
+
+    fun updateContact(data: List<Contact>) {
+        contactAdapter?.updateContacts(data)
     }
 }

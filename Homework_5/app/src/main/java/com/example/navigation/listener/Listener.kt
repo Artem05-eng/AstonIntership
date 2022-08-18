@@ -7,4 +7,6 @@ interface Listener {
     fun showDetailFragment(data: Contact)
 
     fun updateListFragment(data: Contact)
+
+    fun deleteContact(data: Contact)
 }
