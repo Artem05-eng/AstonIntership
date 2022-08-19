@@ -1,6 +1,8 @@
 package com.example.navigation
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -55,6 +57,17 @@ class ListFragment : Fragment(R.layout.list_fragment) {
         }
         data = (arguments?.getParcelableArray(LIST_KEY)?.toList() as List<Contact>)
         contactAdapter?.updateContacts(data)
+        binding?.searchText?.editText?.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+            override fun afterTextChanged(p0: Editable?) {
+                val list = data.filter {(it.name.contains(p0.toString(), true))}
+                contactAdapter?.updateContacts(list)
+            }
+
+        })
     }
 
     private fun showDetail(position: Int) {

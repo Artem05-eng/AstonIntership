@@ -16,12 +16,6 @@ class ContactAdapter(
     private val onLongClick: (position: Int) -> Unit
 ) : RecyclerView.Adapter<ContactHolder>() {
 
-    /*var list = emptyList<Contact>()
-        set(value) {
-            field = value
-            notifyDataSetChanged()
-        }*/
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactHolder {
         val binding = ContactItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ContactHolder(callback, onLongClick, binding)
@@ -61,8 +55,8 @@ class ContactHolder(
     fun onBind(data: Contact) {
         binding.nameContact.text = data.name
         binding.phoneContact.text = data.phone
-        Glide.with(binding.root)
-            .load(data.photoUri)
+        Glide.with(binding.root.context)
+            .load("https://picsum.photos/id/$adapterPosition/200/300.jpg")
             .placeholder(R.drawable.ic_baseline_contact_phone_24)
             .into(binding.photoContact)
     }
