@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarFilter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/topAppBarFilter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:title="Фильтры"
+            app:titleTextAppearance="@style/titleStyle"
+            android:backgroundTint="@color/white"
+            app:menu="@menu/top_app_bar_filter"
+            app:navigationIcon="@drawable/ic_baseline_close_24"
+            style="@style/MyActionBar"/>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <EditText
+        android:id="@+id/editableFilter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:hint="Компания, ключевые слова"
+        android:backgroundTint="@color/grey_42"
+        app:layout_constraintTop_toBottomOf="@+id/appBarFilter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/descriptionChipGroup1"
+        android:text="Тип работодателя"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:textSize="12sp"
+        app:layout_constraintTop_toBottomOf="@+id/editableFilter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/chipGroup1"/>
+
+    <HorizontalScrollView
+        android:id="@+id/chipGroup1"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        app:layout_constraintTop_toBottomOf="@+id/descriptionChipGroup1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chips_group_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="17dp"
+            app:singleLine="true">
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip1"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:backgroundTint="@color/white"
+                app:chipStrokeColor="@color/grey_42"
+                app:chipStrokeWidth="2dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Прямой"
+                android:textSize="16sp"
+                android:textStyle="bold"/>
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip2"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:backgroundTint="@color/white"
+                app:chipStrokeColor="@color/grey_42"
+                app:chipStrokeWidth="2dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Кадровое агенство"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip3"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:backgroundTint="@color/white"
+                app:chipStrokeColor="@color/grey_42"
+                app:chipStrokeWidth="2dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Руководитель проекта"
+                android:textSize="16sp"
+                android:textStyle="bold"/>
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip4"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:backgroundTint="@color/white"
+                app:chipStrokeColor="@color/grey_42"
+                app:chipStrokeWidth="2dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Частный рекрутер"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </com.google.android.material.chip.ChipGroup>
+    </HorizontalScrollView>
+
+    <TextView
+        android:id="@+id/descriptionChipGroup2"
+        android:text="Наличие вакансий у работодателя"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:textSize="12sp"
+        app:layout_constraintTop_toBottomOf="@+id/chipGroup1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/chipGroup2"/>
+
+    <HorizontalScrollView
+        android:id="@+id/chipGroup2"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        app:layout_constraintTop_toBottomOf="@+id/descriptionChipGroup2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chips_group_2"
+            android:layout_width="match_parent"
+            app:singleSelection="true"
+            android:layout_height="wrap_content"
+            android:layout_margin="17dp"
+            app:singleLine="true">
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip21"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:backgroundTint="@color/white"
+                app:chipStrokeColor="@color/grey_42"
+                app:chipStrokeWidth="2dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Есть открытые"
+                android:textSize="16sp"
+                android:textStyle="bold"/>
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip22"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:backgroundTint="@color/white"
+                android:background="@color/grey_42"
+                app:chipStrokeColor="@color/grey_42"
+                app:chipStrokeWidth="2dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Все компании"
+                android:textSize="16sp"
+                android:textStyle="bold"/>
+        </com.google.android.material.chip.ChipGroup>
+    </HorizontalScrollView>
+
+    <Button
+        android:id="@+id/applyButton"
+        android:text="Показать"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="21dp"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

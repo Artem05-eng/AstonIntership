@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/firstFragment">
+
+    <fragment
+        tools:layout="@layout/first_screen"
+        android:id="@+id/firstFragment"
+        android:name="com.example.studio42.ui.FirstFragment"
+        android:label="FirstFragment">
+        <action
+            android:id="@+id/action_firstFragment_to_secondFragment"
+            app:destination="@id/secondFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/firstFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        tools:layout="@layout/second_screen"
+        android:id="@+id/secondFragment"
+        android:name="com.example.studio42.ui.SecondFragment"
+        android:label="SecondFragment" >
+        <action
+            android:id="@+id/action_secondFragment_to_thirdFragment"
+            app:destination="@id/thirdFragment"
+            app:launchSingleTop="true"
+            app:popUpToInclusive="false" />
+        <argument
+            android:name="requestData"
+            app:argType="com.example.studio42.domain.entity.RequestEmployer" />
+        <action
+            android:id="@+id/action_secondFragment_to_detailFragment"
+            app:destination="@id/detailFragment"
+            app:launchSingleTop="true" />
+    </fragment>
+    <fragment
+        tools:layout="@layout/third_screen"
+        android:id="@+id/thirdFragment"
+        android:name="com.example.studio42.ui.ThirdFragment"
+        android:label="ThirdFragment">
+        <argument
+            android:name="request"
+            app:argType="com.example.studio42.domain.entity.RequestEmployer" />
+        <action
+            android:id="@+id/action_thirdFragment_to_secondFragment"
+            app:destination="@id/secondFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/thirdFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        tools:layout="@layout/detail_employer_fragment"
+        android:id="@+id/detailFragment"
+        android:name="com.example.studio42.ui.DetailFragment"
+        android:label="DetailFragment" >
+        <argument
+            android:name="data"
+            app:argType="string" />
+    </fragment>
+</navigation>
