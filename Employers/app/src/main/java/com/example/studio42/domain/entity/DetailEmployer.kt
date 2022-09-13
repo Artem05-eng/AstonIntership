@@ -27,3 +27,16 @@ data class Area(
     val id: String,
     val name: String
 )
+
+data class Vacancy(
+    val id: String,
+    val name: String,
+    val area: Area,
+    val has_test: Boolean,
+    val published_at: String,
+    val alternate_url: String
+)
+
+data class WrapperVacancy<T>(
+    val items: List<T>
+)

@@ -6,14 +6,13 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.example.studio42.data.datasource.database.EmployerDao
 import com.example.studio42.data.datasource.network.EmployerNetworkDataSource
-import com.example.studio42.domain.entity.EmloyerType
-import com.example.studio42.domain.entity.Employer
-import com.example.studio42.domain.entity.EmployerFound
-import com.example.studio42.domain.entity.RequestEmployer
+import com.example.studio42.domain.entity.*
 import com.example.studio42.domain.repository.Repository
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 
@@ -46,6 +45,10 @@ class RepositoryImpl @Inject constructor(
             config = PagingConfig(pageSize = 10, enablePlaceholders = false),
             pagingSourceFactory = { db.searchPagingEmployers(request.text) }
         ).flow
+    }
+
+    override suspend fun getVacancies(id: String): List<Vacancy> = withContext(Dispatchers.IO) {
+        network.getVacancies(id).items
     }
 
 

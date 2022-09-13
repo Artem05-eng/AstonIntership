@@ -33,6 +33,11 @@ abstract class PresentationModule {
     @ViewModelKey(DetailViewModel::class)
     abstract fun bindsDetailViewModel(viewModel: DetailViewModel): ViewModel
 
+    @Binds
+    @IntoMap
+    @ViewModelKey(VacancyViewModel::class)
+    abstract fun bindsVacancyViewModel(viewModel: VacancyViewModel): ViewModel
+
     @Singleton
     @Binds
     abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory

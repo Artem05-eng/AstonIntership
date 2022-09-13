@@ -3,4 +3,5 @@
     <string name="error_message">Ошибка сети!</string>
     <string name="link_company"><u>Сайт работодателя</u></string>
     <string name="link_vacancies"><u>Открытых вакансий в компании: 0</u></string>
+    <string name="link_to_detail_vacancy"><u>Ссылка на вакансии в компании</u></string>
 </resources>

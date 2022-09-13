@@ -88,7 +88,7 @@ class SecondFragment : Fragment() {
             override fun afterTextChanged(p0: Editable?) {
                 requestBody.text = p0.toString()
                 updateList()
-                if (p0.toString().isNotEmpty()) {
+                if (requestBody != RequestEmployer("", "", false)) {
                     viewModel.checkFlag()
                 } else {
                     viewModel.uncheckFlag()

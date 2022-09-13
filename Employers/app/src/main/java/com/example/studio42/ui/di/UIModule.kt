@@ -21,4 +21,7 @@ abstract class UIModule {
 
     @ContributesAndroidInjector
     abstract fun bindDetailFragment(): DetailFragment
+
+    @ContributesAndroidInjector
+    abstract fun bindVacanciesFragment(): VacancyFragment
 }

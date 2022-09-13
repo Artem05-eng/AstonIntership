@@ -32,4 +32,9 @@ interface EmployerNetworkDataSource {
     suspend fun getEmployerById(
         @Path("employer_id") id: String
     ): DetailEmployer
+
+    @GET("/vacancies")
+    suspend fun getVacancies(
+        @Query("employer_id") employer_id: String
+    ): WrapperVacancy<Vacancy>
 }

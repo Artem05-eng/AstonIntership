@@ -3,7 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Aston/Employers/app/src/main/res/layout/card_vacancy.xml" value="0.18115942028985507" />
+        <entry key="..\:/Aston/Employers/app/src/main/res/layout/card_work.xml" value="0.18115942028985507" />
+        <entry key="..\:/Aston/Employers/app/src/main/res/layout/detail_employer_fragment.xml" value="0.18115942028985507" />
         <entry key="..\:/Aston/Employers/app/src/main/res/layout/first_screen.xml" value="0.1" />
+        <entry key="..\:/Aston/Employers/app/src/main/res/layout/vacancies_layout.xml" value="0.1160081053698075" />
         <entry key="..\:/Studio42/app/src/main/res/drawable/filter_light.xml" value="0.1" />
         <entry key="..\:/Studio42/app/src/main/res/drawable/ic_baseline_filter_alt_24.xml" value="0.1" />
         <entry key="..\:/Studio42/app/src/main/res/drawable/ic_image.xml" value="0.1" />

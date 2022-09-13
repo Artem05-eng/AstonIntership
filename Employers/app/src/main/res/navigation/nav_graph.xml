@@ -57,5 +57,18 @@
         <argument
             android:name="data"
             app:argType="string" />
+        <action
+            android:id="@+id/action_detailFragment_to_vacancyFragment"
+            app:destination="@id/vacancyFragment"
+            app:launchSingleTop="true" />
+    </fragment>
+    <fragment
+        tools:layout="@layout/vacancies_layout"
+        android:id="@+id/vacancyFragment"
+        android:name="com.example.studio42.ui.VacancyFragment"
+        android:label="VacancyFragment" >
+        <argument
+            android:name="data"
+            app:argType="string" />
     </fragment>
 </navigation>

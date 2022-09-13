@@ -97,10 +97,7 @@ class DetailFragment : Fragment() {
             }
         }
         binding?.vacancies?.setOnClickListener {
-            if (urlVacancies != "") {
-                val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(urlVacancies))
-                startActivity(browserIntent)
-            }
+            findNavController().navigate(DetailFragmentDirections.actionDetailFragmentToVacancyFragment(id))
         }
         binding?.retryButtonDetail?.setOnClickListener {
             viewModel.getDetail(id)
