@@ -104,7 +104,7 @@ class SecondFragment : Fragment() {
         }
         viewModel.flagFilter.observe(viewLifecycleOwner) { flag ->
             if (flag) {
-                binding?.chip?.isGone = false
+                binding?.chip?.isGone = false || !isOnline()
                 binding?.filterButton?.setBackgroundColor(resources.getColor(R.color.blue_42))
                 binding?.filterButton?.setImageDrawable(resources.getDrawable(R.drawable.filter_light))
             } else {

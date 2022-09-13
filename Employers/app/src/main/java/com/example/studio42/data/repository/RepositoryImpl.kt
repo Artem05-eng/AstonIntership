@@ -33,7 +33,7 @@ class RepositoryImpl @Inject constructor(
     override fun getDataFromShared(): List<EmloyerType> {
         val json = shared.getString(LOCALE_KEY, null)
         val listType = object : TypeToken<List<EmloyerType>>() {}.type
-        return Gson().fromJson<List<EmloyerType>>(json, listType)
+        return Gson().fromJson<List<EmloyerType>>(json, listType) ?: emptyList()
     }
 
     override fun saveDataToShared(data: List<EmloyerType>) {

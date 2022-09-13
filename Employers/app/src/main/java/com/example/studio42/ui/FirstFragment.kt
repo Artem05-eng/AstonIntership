@@ -57,9 +57,11 @@ class FirstFragment : Fragment() {
             viewModel.getEmploerType()
         }
         viewModel.data.observe(viewLifecycleOwner, {
-            findNavController().navigate(
-                FirstFragmentDirections.actionFirstFragmentToSecondFragment(RequestEmployer("", "", false))
-            )
+            if (it.isNotEmpty()) {
+                findNavController().navigate(
+                    FirstFragmentDirections.actionFirstFragmentToSecondFragment(RequestEmployer("", "", false))
+                )
+            }
         })
     }
 
